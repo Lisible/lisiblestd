@@ -1,6 +1,7 @@
 #ifndef LSTD_TESTS_TEST_H
 #define LSTD_TESTS_TEST_H
 
+#include <math.h> // IWYU pragma: keep
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdio.h>
