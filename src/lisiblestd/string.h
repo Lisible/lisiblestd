@@ -9,11 +9,20 @@ struct String {
   char *value;
   usize length;
 };
-
 typedef struct String String;
+typedef struct StringView StringView;
 
-bool String_from_str(Allocator *allocator, String *string, const char *str);
+String String_new(Allocator *allocator, const char *str);
 void String_destroy(Allocator *allocator, String *string);
+bool String_eq(const String *lhs, const String *rhs);
+StringView String_view(const String *str);
 usize String_length(const String *string);
+
+struct StringView {
+  const char *value;
+  usize length;
+};
+
+StringView StringView_from_str(const char *data);
 
 #endif // LSTD_STRING_H
