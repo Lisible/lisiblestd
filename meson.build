@@ -5,7 +5,8 @@ lisiblestd_lib = library('lisiblestd',
   'src/lisiblestd/log.c', 
   'src/lisiblestd/memory.c', 
   'src/lisiblestd/string.c',
-  'src/lisiblestd/bytes.c'
+  'src/lisiblestd/bytes.c',
+  'src/lisiblestd/vec.c'
 )
 lisiblestd_dep = declare_dependency(include_directories: lisiblestd_incdir, link_with: [lisiblestd_lib])
 
