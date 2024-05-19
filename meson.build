@@ -14,3 +14,5 @@ test_string = executable('test_string', 'tests/test_runner.c', 'tests/string.c',
 test('test_string', test_string)
 test_bytes = executable('test_bytes', 'tests/test_runner.c', 'tests/bytes.c', dependencies: [lisiblestd_dep])
 test('test_bytes', test_bytes)
+test_memory = executable('test_memory', 'tests/test_runner.c', 'tests/memory.c', dependencies: [lisiblestd_dep])
+test('test_memory', test_memory)
