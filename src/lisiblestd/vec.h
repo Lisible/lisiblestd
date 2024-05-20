@@ -57,7 +57,7 @@
                                      new_capacity * sizeof(T));                \
     if (!vec->data) {                                                          \
       /* TODO maybe improve that error handling? */                            \
-      LOG0_ERROR("Vec reallocation failed, no memory left");                   \
+      LOG_ERROR("Vec reallocation failed, no memory left");                    \
       abort();                                                                 \
     }                                                                          \
     vec->capacity = new_capacity;                                              \

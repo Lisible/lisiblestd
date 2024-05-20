@@ -15,31 +15,20 @@ typedef enum {
 
 extern LogLevel lstd_log_level;
 
-#define LOG0(log_level, msg)                                                   \
+#define LOG(log_level, ...)                                                    \
   do {                                                                         \
     if (lstd_log_level <= log_level) {                                         \
-      fprintf(stderr, LSTD_LOG_PREFIX "%s\n", log_level_to_str(log_level),     \
-              __FILE__, __LINE__, msg);                                        \
+      fprintf(stderr, LSTD_LOG_PREFIX, log_level_to_str(log_level), __FILE__,  \
+              __LINE__);                                                       \
+      fprintf(stderr, __VA_ARGS__);                                            \
+      fprintf(stderr, "\n");                                                   \
     }                                                                          \
   } while (0)
-#define LOG0_TRACE(msg) LOG0(LogLevel_Trace, msg)
-#define LOG0_DEBUG(msg) LOG0(LogLevel_Debug, msg)
-#define LOG0_WARN(msg) LOG0(LogLevel_Warn, msg)
-#define LOG0_ERROR(msg) LOG0(LogLevel_Error, msg)
-#define LOG0_INFO(msg) LOG0(LogLevel_Info, msg)
-
-#define LOG(log_level, fmt, ...)                                               \
-  do {                                                                         \
-    if (lstd_log_level <= log_level) {                                         \
-      fprintf(stderr, LSTD_LOG_PREFIX fmt "\n", log_level_to_str(log_level),   \
-              __FILE__, __LINE__, __VA_ARGS__);                                \
-    }                                                                          \
-  } while (0)
-#define LOG_TRACE(fmt, ...) LOG(LogLevel_Trace, fmt, __VA_ARGS__)
-#define LOG_DEBUG(fmt, ...) LOG(LogLevel_Debug, fmt, __VA_ARGS__)
-#define LOG_WARN(fmt, ...) LOG(LogLevel_Warn, fmt, __VA_ARGS__)
-#define LOG_ERROR(fmt, ...) LOG(LogLevel_Error, fmt, __VA_ARGS__)
-#define LOG_INFO(fmt, ...) LOG(LogLevel_Info, fmt, __VA_ARGS__)
+#define LOG_TRACE(...) LOG(LogLevel_Trace, __VA_ARGS__)
+#define LOG_DEBUG(...) LOG(LogLevel_Debug, __VA_ARGS__)
+#define LOG_WARN(...) LOG(LogLevel_Warn, __VA_ARGS__)
+#define LOG_ERROR(...) LOG(LogLevel_Error, __VA_ARGS__)
+#define LOG_INFO(...) LOG(LogLevel_Info, __VA_ARGS__)
 
 void lstd_log_init(void);
 const char *log_level_to_str(LogLevel log_level);
