@@ -12,11 +12,12 @@ typedef enum {
   LogLevel_Error,
   LogLevel_Info
 } LogLevel;
-#define LSTD_LOG_LEVEL LogLevel_Trace
+
+extern LogLevel lstd_log_level;
 
 #define LOG0(log_level, msg)                                                   \
   do {                                                                         \
-    if (LSTD_LOG_LEVEL <= log_level) {                                         \
+    if (lstd_log_level <= log_level) {                                         \
       fprintf(stderr, LSTD_LOG_PREFIX "%s\n", log_level_to_str(log_level),     \
               __FILE__, __LINE__, msg);                                        \
     }                                                                          \
@@ -29,7 +30,7 @@ typedef enum {
 
 #define LOG(log_level, fmt, ...)                                               \
   do {                                                                         \
-    if (LSTD_LOG_LEVEL <= log_level) {                                         \
+    if (lstd_log_level <= log_level) {                                         \
       fprintf(stderr, LSTD_LOG_PREFIX fmt "\n", log_level_to_str(log_level),   \
               __FILE__, __LINE__, __VA_ARGS__);                                \
     }                                                                          \
@@ -40,6 +41,8 @@ typedef enum {
 #define LOG_ERROR(fmt, ...) LOG(LogLevel_Error, fmt, __VA_ARGS__)
 #define LOG_INFO(fmt, ...) LOG(LogLevel_Info, fmt, __VA_ARGS__)
 
+void lstd_log_init(void);
 const char *log_level_to_str(LogLevel log_level);
+LogLevel log_level_from_str(const char *str);
 
 #endif // LSTD_LOG_H
