@@ -11,6 +11,8 @@ lisiblestd_lib = library('lisiblestd',
 )
 lisiblestd_dep = declare_dependency(include_directories: lisiblestd_incdir, link_with: [lisiblestd_lib])
 
+
+if not meson.is_cross_build()
 test_string = executable('test_string', 'tests/test_runner.c', 'tests/string.c', dependencies: [lisiblestd_dep])
 test('test_string', test_string)
 test_bytes = executable('test_bytes', 'tests/test_runner.c', 'tests/bytes.c', dependencies: [lisiblestd_dep])
@@ -19,3 +21,4 @@ test_memory = executable('test_memory', 'tests/test_runner.c', 'tests/memory.c',
 test('test_memory', test_memory)
 test_hash_table = executable('test_hash_table', 'tests/test_runner.c', 'tests/hash_table.c', dependencies: [lisiblestd_dep])
 test('test_hash_table', test_hash_table)
+endif

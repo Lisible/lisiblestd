@@ -1,0 +1,5 @@
+[binaries]
+c = 'arm-none-eabi-gcc'
+ar = 'arm-none-eabi-ar'
+strip = 'arm-none-eabi-strip'
+ld = 'arm-none-eabi-ld'
