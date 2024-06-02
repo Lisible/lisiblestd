@@ -1,4 +1,5 @@
-project('lisiblestd', 'c', version: '0.3.0', default_options: ['c_std=c18', 'warning_level=3'])
+project('lisiblestd', 'c', version: '0.3.0', default_options: ['c_std=c18', 'warning_level=3', 'default_library=static'])
+
 
 lisiblestd_incdir = include_directories('src/')
 lisiblestd_lib = library('lisiblestd', 
