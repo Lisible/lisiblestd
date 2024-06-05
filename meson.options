@@ -1,0 +1,1 @@
+option('playdate_sdk_path', type: 'string', value: '/opt/playdate-sdk')

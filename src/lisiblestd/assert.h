@@ -5,6 +5,23 @@
 
 extern void exit(int);
 
+
+
+#ifdef LSTD_PLATFORM_PLAYDATE
+#include <pd_api.h>
+extern PlaydateAPI* pd;
+#define LSTD_ASSERT(expr)                                                      \
+  do {                                                                         \
+    if (!(expr)) {                                                             \
+      pd->system->error("Assertion failed:\n\t%s", #expr);                     \
+    }                                                                          \
+  } while (0)
+
+#define LSTD_UNIMPLEMENTED()                                                   \
+  do {                                                                         \
+      pd->system->error("Unimpemented code reached");                          \
+  } while (0)
+#else
 #define LSTD_ASSERT(expr)                                                      \
   do {                                                                         \
     if (!(expr)) {                                                             \
@@ -18,5 +35,6 @@ extern void exit(int);
     LOG_ERROR("Unimplemented code reached");                                   \
     exit(1);                                                                   \
   } while (0)
+#endif
 
 #endif // LSTD_ASSERT_H
