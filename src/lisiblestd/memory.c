@@ -68,6 +68,7 @@ void *arena_allocator_allocate_aligned(usize alignment, usize size, void *ctx) {
   (void)alignment;
   (void)size;
   LSTD_UNIMPLEMENTED();
+  return NULL;
 }
 void *arena_allocator_allocate_array(usize count, usize item_size, void *ctx) {
   LSTD_ASSERT(ctx != NULL);
@@ -80,6 +81,7 @@ void *arena_allocator_reallocate(void *ptr, usize old_size, usize new_size,
   (void)new_size;
   (void)ctx;
   LSTD_UNIMPLEMENTED();
+  return NULL;
 }
 
 void arena_allocator_free(void *ptr, void *ctx) {

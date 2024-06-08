@@ -12,7 +12,7 @@ String String_new(Allocator *allocator, const char *str) {
   char *value = Allocator_allocate(allocator, length + 1);
   LSTD_ASSERT(value != NULL);
 
-  strncpy(value, str, length);
+  strncpy(value, str, length + 1);
   value[length] = '\0';
 
   return (String){.value = value, .length = length};

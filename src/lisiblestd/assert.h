@@ -5,21 +5,19 @@
 
 extern void exit(int);
 
-
-
 #ifdef LSTD_PLATFORM_PLAYDATE
 #include <pd_api.h>
-extern PlaydateAPI* pd;
+extern PlaydateAPI *pd;
 #define LSTD_ASSERT(expr)                                                      \
   do {                                                                         \
     if (!(expr)) {                                                             \
-      pd->system->error("Assertion failed:\n\t%s", #expr);                     \
+      pd->system->error("Assertion failed: %s", #expr);                        \
     }                                                                          \
   } while (0)
 
 #define LSTD_UNIMPLEMENTED()                                                   \
   do {                                                                         \
-      pd->system->error("Unimpemented code reached");                          \
+    pd->system->error("Unimpemented code reached");                            \
   } while (0)
 #else
 #define LSTD_ASSERT(expr)                                                      \

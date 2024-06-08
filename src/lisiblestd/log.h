@@ -15,6 +15,19 @@ typedef enum {
 
 extern LogLevel lstd_log_level;
 
+#ifdef LSTD_PLATFORM_PLAYDATE
+#include <pd_api.h>
+extern PlaydateAPI *pd;
+#define LOG(log_level, ...)                                                    \
+  do {                                                                         \
+    if (lstd_log_level <= log_level) {                                         \
+      pd->system->logToConsole(LSTD_LOG_PREFIX, log_level_to_str(log_level),   \
+                               __FILE__, __LINE__);                            \
+      pd->system->logToConsole(__VA_ARGS__);                                   \
+      pd->system->logToConsole("\n");                                          \
+    }                                                                          \
+  } while (0)
+#else
 #define LOG(log_level, ...)                                                    \
   do {                                                                         \
     if (lstd_log_level <= log_level) {                                         \
@@ -24,6 +37,7 @@ extern LogLevel lstd_log_level;
       fprintf(stderr, "\n");                                                   \
     }                                                                          \
   } while (0)
+#endif
 #define LOG_TRACE(...) LOG(LogLevel_Trace, __VA_ARGS__)
 #define LOG_DEBUG(...) LOG(LogLevel_Debug, __VA_ARGS__)
 #define LOG_WARN(...) LOG(LogLevel_Warn, __VA_ARGS__)

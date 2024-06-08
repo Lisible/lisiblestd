@@ -8,8 +8,28 @@ if is_playdate_build
 playdate_sdk_path = get_option('playdate_sdk_path')
 playdate_sdk_incdir = playdate_sdk_path / 'C_API'
 playdate_sdk_dep = declare_dependency(include_directories: playdate_sdk_incdir)
-lisiblestd_c_args += '-DLSTD_PLATFORM_PLAYDATE'
-lisiblestd_c_args += '-DTARGET_EXTENSION'
+lisiblestd_c_args += '-DLSTD_PLATFORM_PLAYDATE=1'
+lisiblestd_c_args += [
+  '-DTARGET_PLAYDATE=1',
+  '-DTARGET_EXTENSION=1',
+  '-mthumb',
+  '-mcpu=cortex-m7',
+  '-mfloat-abi=hard',
+  '-mfpu=fpv5-sp-d16',
+  '-D__FPU_USED=1',
+  '-falign-functions=16',
+  '-fomit-frame-pointer',
+  '-gdwarf-2',
+  '-fverbose-asm',
+  '-ffunction-sections',
+  '-fdata-sections',
+  '-mword-relocations',
+  '-fno-common',
+  '-fno-exceptions',
+  '-Wno-unknown-pragmas',
+  '-Wdouble-promotion',
+  '-O2',
+]
 lisiblestd_deps += playdate_sdk_dep
 endif
 
