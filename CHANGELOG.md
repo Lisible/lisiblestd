@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.0 (2024-06-10)
+- Add support for Playdate
+
 ## 0.2.0 (2024-05-20)
 - Allow to choose the log level at runtime
 - Remove LOG0 macros
